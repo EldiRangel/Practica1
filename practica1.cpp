@@ -13,8 +13,34 @@ cin>>n;
 cin.ignore();
 
 ofstream archivo("archivo.txt");
-if (archivo.is_open())
-
-
+if (archivo.is_open()){
+for ( int i = 0; i < n; i++)
+{
+ cout<< "ingrese nombre de la persona"<< i+1<<": ";
+        cin.getline(nombre,50);
+        cout<< "ingrese cedula de la persona"<< i+1<<": ";
+        cin>> cedula;
+        cout<< "ingrese correo de la persona"<< i+1<<": ";
+        cin>> correo;
+        archivo<<nombre<<" "<<cedula<<" "<<correo<<" "<<endl;
+        cin.ignore(100,'\n');
+}
+ archivo.close();
+ }
+else{
+cout<< "no se pudo abrir el archivo";
+return 1;
+}
+ifstream leerArchivo("archivo.txt");
+if (leerArchivo.is_open())
+{
+while(leerArchivo>>nombre>>cedula>>correo) {
+cout<<"mi nombre es: "<<nombre <<", mi cedula es: "<<cedula<<", mi correo es: "<<correo<<endl;
+}
+leerArchivo.close();
+}else{
+cout<< "no se pudo abrir el archivo de lectura"<<endl;
+}
+return 0;
 
 }
